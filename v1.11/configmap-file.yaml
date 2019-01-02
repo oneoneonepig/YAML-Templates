@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: files
+data:
+  file.conf: |-
+    a=b
+    c=d
+  file2.conf: |-
+    echo
+    echo
+    

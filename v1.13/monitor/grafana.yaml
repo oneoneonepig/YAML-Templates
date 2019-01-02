@@ -1,0 +1,168 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    app: grafana
+    stack: tig
+  name: grafana-config
+  namespace: monitor
+data:
+  grafana.ini: |
+    [security]
+    admin_user = admin
+    admin_password = admin
+    login_remember_days = 7
+    [smtp]
+    enabled = true
+    host = xxxxx
+    user = xxxxx
+    password = xxxxx
+    from_address = xxxxx
+    [log]
+    mode = console
+    level = info
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-datasource
+  namespace: monitor
+  labels:
+    app: grafana
+    stack: tig
+data:
+  k8s.yaml: |
+    apiVersion: 1
+    deleteDatasources:
+    - name: k8s
+    datasources:
+    - name: k8s
+      type: influxdb
+      url: http://influxdb:8086
+      access: proxy
+      database: telegraf
+      basicAuth: true
+      basicAuthUser: admin
+      basicAuthPassword: admin
+      isDefault: true
+      version: 1
+      editable: true
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: grafana
+  namespace: monitor
+  labels:
+    app: grafana
+    stack: tig
+spec:
+  ports:
+    - port: 80
+      targetPort: 3000
+      nodePort:  32001
+  selector:
+    app: grafana
+    stack: tig
+  type: NodePort
+---
+#apiVersion: v1
+#kind: PersistentVolumeClaim
+#metadata:
+#  name: grafana
+#  namespace: monitor
+#  labels:
+#    app: grafana
+#spec:
+#  storageClassName: rook-ceph-block
+#  accessModes:
+#  - ReadWriteOnce
+#  resources:
+#    requests:
+#      storage: 1Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grafana
+  namespace: monitor
+  labels:
+    app: grafana
+    stack: tig
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grafana
+      stack: tig
+  template:
+    metadata:
+      annotations:
+      labels:
+        app: grafana
+        stack: tig
+    spec:
+      securityContext:
+        fsGroup: 472
+      initContainers:
+      - name: grafana-init-alpine
+        image: alpine:latest
+        command:
+        - /bin/chown
+        - -R
+        - 472:472
+        - /var/lib/grafana
+        volumeMounts:
+        - name: storage-volume
+          mountPath: /var/lib/grafana
+        securityContext:
+          runAsUser: 0
+      containers:
+      - name: grafana
+        image: grafana/grafana:5.4.2
+        readinessProbe:
+          httpGet:
+            path: /login
+            port: 3000
+          initialDelaySeconds: 15
+          timeoutSeconds: 30
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        volumeMounts:
+          - name: config-volume
+            mountPath: "/etc/grafana"
+          - name: datasource-volume
+            mountPath: "/etc/grafana/provisioning/datasources"
+          - name: storage-volume
+            mountPath: "/var/lib/grafana"
+      affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 1
+            preference:
+              matchExpressions:
+              - key: kubernetes.io/stack-tig
+                operator: Exists
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - influxdb
+            topologyKey: "kubernetes.io/hostname"
+      volumes:
+        - name: config-volume
+          configMap:
+            name: grafana-config
+        - name: datasource-volume
+          configMap:
+            name: grafana-datasource
+        - name: storage-volume
+          hostPath: 
+            path: /var/lib/grafana
+            type: DirectoryOrCreate
+        

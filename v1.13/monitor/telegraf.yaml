@@ -1,0 +1,172 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: telegraf
+  namespace: monitor
+  labels:
+    app: telegraf
+    stack: tig
+---
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: kubelet-reader
+rules:
+- apiGroups: [""]
+  resources: ["nodes", "nodes/*"]
+  verbs: ["get"]
+- nonResourceURLs: ["*"]
+  verbs: ["get"]
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: telegraf
+  namespace: monitor
+roleRef:
+  kind: ClusterRole
+  name: system:kubelet-api-admin
+  apiGroup: rbac.authorization.k8s.io
+subjects:
+- kind: ServiceAccount
+  name: telegraf
+  namespace: monitor
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: telegraf
+  namespace: monitor
+  labels:
+    app: telegraf
+    stack: tig
+data:
+  telegraf.conf: |+
+    [agent]
+      interval = "10s"
+      round_interval = true
+      metric_batch_size = 1000
+      metric_buffer_limit = 10000
+      collection_jitter = "0s"
+      flush_interval = "10s"
+      flush_jitter = "0s"
+      precision = ""
+      debug = false
+      quiet = true
+      logfile = ""
+      hostname = "$NODENAME"
+      omit_hostname = false
+    [[outputs.influxdb]]
+      urls = ["http://influxdb:8086"]
+      database = "telegraf"
+      retention_policy = ""
+      write_consistency = "any"
+      timeout = "5s"
+      username = "admin"
+      password = "admin"
+      user_agent = "telegraf"
+      insecure_skip_verify = false
+    [[inputs.cpu]]
+      percpu = true
+      totalcpu = true
+      collect_cpu_time = false
+    [[inputs.disk]]
+      ignore_fs = ["tmpfs", "devtmpfs"]
+      mount_points = ["/"]
+    [[inputs.diskio]]
+    [[inputs.docker]]
+      endpoint = "unix:///var/run/docker.sock"
+      container_names = []
+      timeout = "5s"
+      perdevice = true
+      total = false
+      docker_label_exclude = [
+        "annotation.kubernetes.io/*",
+      ]
+    [[inputs.kernel]]
+    [[inputs.mem]]
+    [[inputs.processes]]
+    [[inputs.system]]
+    [[inputs.net]]
+    [[inputs.netstat]]
+    [[inputs.kubernetes]]
+      url = "https://$HOSTIP:10250"
+      insecure_skip_verify = true
+      bearer_token = "/var/run/secrets/kubernetes.io/serviceaccount/token"
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: telegraf
+  namespace: monitor
+  labels:
+    app: telegraf
+    stack: tig
+spec:
+  selector:
+    matchLabels:
+      app: telegraf
+      stack: tig
+  template:
+    metadata:
+      labels:
+        app: telegraf
+        stack: tig
+    spec:
+      serviceAccountName: telegraf
+      tolerations:
+      - key: node-role.kubernetes.io/master
+        effect: NoSchedule
+      containers:
+      - name: telegraf
+        image: telegraf:1.9-alpine
+        resources:
+          limits:
+            cpu: 0.5
+            memory: 1Gi
+          requests:
+            cpu: 0.1
+            memory: 256Mi
+        env:
+        - name: NODENAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        - name: HOSTIP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        - name: HOST_PROC
+          value: /rootfs/proc
+        - name: HOST_SYS
+          value: /rootfs/sys
+        volumeMounts:
+        - name: varrunutmpro
+          mountPath: /var/run/utmp
+          readOnly: true
+        - name: sysro
+          mountPath: /rootfs/sys
+          readOnly: true
+        - name: procro
+          mountPath: /rootfs/proc
+          readOnly: true
+        - name: docker-socket
+          mountPath: /var/run/docker.sock
+        - name: config
+          mountPath: /etc/telegraf
+      volumes:
+      - name: sysro
+        hostPath:
+          path: /sys
+      - name: docker-socket
+        hostPath:
+          path: /var/run/docker.sock
+      - name: procro
+        hostPath:
+          path: /proc
+      - name: varrunutmpro
+        hostPath:
+          path: /var/run/utmp
+      - name: config
+        configMap:
+          name: telegraf

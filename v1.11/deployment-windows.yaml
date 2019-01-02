@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: iis
+  labels:
+    app: iis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: iis
+  template:
+    metadata:
+      labels:
+        app: iis
+    spec:
+      nodeSelector:
+        beta.kubernetes.io/arch: amd64
+        beta.kubernetes.io/os: windows
+      containers:
+      - name: iis
+        image: oneoneonepig/iis_test:latest
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: iis
+spec:
+  selector:
+    app: iis
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+  type: NodePort

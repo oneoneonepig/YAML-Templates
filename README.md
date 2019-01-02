@@ -1,2 +1,3 @@
 # YAML-Templates
-Just some YAMLs
+
+Just some yaml templates for Kubernetes

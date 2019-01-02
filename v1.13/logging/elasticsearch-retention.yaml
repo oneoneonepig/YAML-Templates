@@ -1,0 +1,36 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: elasticsearch-retention
+  namespace: logging
+  labels:
+    usage: elasticsearch-retention
+    component: elasticsearch-retention
+    stack: elk
+spec:
+  schedule: "0 0 * * *"
+  successfulJobsHistoryLimit: 2
+  failedJobsHistoryLimit: 2
+  jobTemplate:
+    spec:
+      backoffLimit: 1
+      template:
+        spec:
+          containers:
+          - name: python
+            image: python:3.7-alpine
+            args:
+            - /bin/sh
+            - -c
+            - pip install -q -U elasticsearch-curator==5.6.0;
+              curator_cli --host elasticsearch --port 9200 delete_indices --filter_list '{"filtertype":"age","source":"name","timestring":"%Y.%m.%d","unit":"days","unit_count":"7","direction":"older"}';
+              echo Elasticsearch retention performed.
+          restartPolicy: Never
+          affinity:
+            nodeAffinity:
+              preferredDuringSchedulingIgnoredDuringExecution:
+              - weight: 1
+                preference:
+                  matchExpressions:
+                  - key: kubernetes.io/stack-elk
+                    operator: Exists
