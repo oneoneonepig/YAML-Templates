@@ -1,6 +1,6 @@
 # Line 27-31
-# limits: Minimum guaranteed memory usage
-# request: Maximim memory usage
+# limits: Maximim memory usage
+# request: Minimum guaranteed memory usage
 
 apiVersion: extensions/v1beta1
 kind: Deployment
