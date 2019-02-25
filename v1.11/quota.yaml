@@ -1,0 +1,31 @@
+# Line 27-31
+# limits: Minimum guaranteed memory usage
+# request: Maximim memory usage
+
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: trapacapp
+  labels:
+    component: trapac
+    app: trapacapp
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        component: trapac
+        app: trapacapp
+    spec:
+      containers:
+      - image: 127.0.0.1:30001/trapacapp:Release-XXXXXX
+        imagePullPolicy: IfNotPresent
+        name: trapacapp
+        envFrom:
+        - configMapRef:
+            name: trapacapp-config
+        resources:
+          limits:
+            memory: "2Gi"
+          requests:
+            memory: "600Mi"
