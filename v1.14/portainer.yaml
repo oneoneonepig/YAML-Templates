@@ -1,0 +1,41 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: portainer
+  namespace: kube-system
+spec:
+  selector:
+    app: portainer
+  ports:
+  - protocol: TCP
+    port: 9000
+    targetPort: 9000
+    nodePort: 30000
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: portainer
+  namespace: kube-system
+  labels:
+    app: portainer
+spec:
+  selector:
+    matchLabels:
+      app: portainer
+  template:
+    metadata:
+      labels:
+        app: portainer
+    spec:
+      containers:
+      - name: portainer
+        image: portainer/portainer:latest
+        volumeMounts:
+        - mountPath: /data
+          name: portainer-data
+      volumes:
+      - name: portainer-data
+        emptyDir: {}
