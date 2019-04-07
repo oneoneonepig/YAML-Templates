@@ -1,0 +1,33 @@
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: portainer-agent
+  namespace: kube-system
+  labels:
+    app: portainer-agent
+spec:
+  selector:
+    matchLabels:
+      app: portainer-agent
+  template:
+    metadata:
+      labels:
+        app: portainer-agent
+    spec:
+      tolerations:
+      - key: node-role.kubernetes.io/master
+        operator: Exists
+        effect: NoSchedule
+      containers:
+      - name: portainer-agent
+        image: portainer/agent:latest
+        volumeMounts:
+        - mountPath: /var/run/docker.sock
+          name: docker-socket
+      volumes:
+      - name: docker-socket
+        hostPath:
+          path: /var/run/docker.sock
+          type: File
+      hostNetwork: true
