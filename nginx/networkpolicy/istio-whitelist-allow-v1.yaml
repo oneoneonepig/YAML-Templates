@@ -24,7 +24,7 @@ kind: rule
 metadata:
   name: checkversion
 spec:
-  match: source.labels["app"] == "frontend"
+  match: source.labels["app"] == "frontend" && destination.labels["app"] == "nginx"
   actions:
   - handler: whitelist
     instances: [ appversion ]
