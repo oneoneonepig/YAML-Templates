@@ -5,7 +5,7 @@ metadata:
   labels:
     app: nginx
 spec:
-  replicas: 1
+  replicas: 4
   selector:
     matchLabels:
       app: nginx
@@ -13,6 +13,8 @@ spec:
     metadata:
       labels:
         app: nginx
+      annotations:
+        prometheus.io/scrape: "true"
     spec:
       containers:
       - name: nginx

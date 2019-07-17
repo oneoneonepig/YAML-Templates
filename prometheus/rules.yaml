@@ -1,0 +1,15 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  labels:
+    app: prometheus-operator
+    release: prom
+    prometheus: nginx
+    role: alert-rules
+  name: prometheus-nginx-rules
+spec:
+  groups:
+  - name: ./nginx.rules
+    rules:
+    - alert: NginxDeploymentAvailablePodsLessThan4
+      expr: kube_deployment_status_replicas_available{namespace="default",deployment="nginx"} < 4
