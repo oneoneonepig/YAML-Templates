@@ -13,3 +13,9 @@ spec:
     rules:
     - alert: NginxDeploymentAvailablePodsLessThan4
       expr: kube_deployment_status_replicas_available{namespace="default",deployment="nginx"} < 4
+      for: 1m
+      labels:
+        severity: info
+        app: nginx
+      annotations:
+        summary: Any of the trapacapp pod's memory exceeds 500m
