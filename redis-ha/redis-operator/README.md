@@ -37,15 +37,32 @@ fi
 kubectl apply -f monitor-pod.yaml
 ```
 
-## Install redis 5 
+## Install redis 5 (Ubuntu)
 
 ```
-sudo su -
+if [[ $EUID -ne 0 ]]; then
+  sudo su -
+fi
 apt update
-apt install -y wget build-essential
+apt install -y wget build-essential tcl
 wget http://download.redis.io/releases/redis-5.0.5.tar.gz
-tar xzvf redis-5.0.5.tar.gz
+tar xzf redis-5.0.5.tar.gz
 cd redis-5.0.5
 make install
+# make test
+redis-cli --version
+```
+
+## Install redis 5 (alpine)
+
+
+```
+apk update
+apk install alpine-sdk linux-headers tcl
+wget http://download.redis.io/releases/redis-5.0.5.tar.gz
+tar xzf redis-5.0.5.tar.gz
+cd redis-5.0.5
+make install
+# make test
 redis-cli --version
 ```
