@@ -2,6 +2,7 @@
 
 ```
 git clone https://github.com/oneoneonepig/YAML-Templates.git
+cd ./redis-ha/redis-operator/
 ```
 
 ## Install CRD and create instance
