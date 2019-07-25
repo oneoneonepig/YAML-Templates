@@ -7,6 +7,7 @@ metadata:
     prometheus: nginx
     role: alert-rules
   name: prometheus-nginx-rules
+  namespace: prom
 spec:
   groups:
   - name: ./nginx.rules
@@ -18,4 +19,4 @@ spec:
         severity: info
         app: nginx
       annotations:
-        summary: Any of the trapacapp pod's memory exceeds 500m
+        summary: Nginx deployment has less than 4 available pods

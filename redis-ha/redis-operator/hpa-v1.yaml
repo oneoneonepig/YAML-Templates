@@ -1,0 +1,12 @@
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: redis
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: StatefulSet
+    name: rfr-redisfailover
+  minReplicas: 6
+  maxReplicas: 6
+  targetCPUUtilizationPercentage: 50
