@@ -175,28 +175,28 @@ function check_current() {
 
     STS_UPDATED_REPLICAS=$(eval $APICMD/apis/apps/v1/namespaces/${REDIS_NAMESPACE}/statefulsets/${STS_NAME} | jq '.status.updatedReplicas')
 
-    if [[ $CURRENT_UTIL_AVG -ge 0 ]] && [[ $CURRENT_UTIL_AVG -le 100 ]]; then
+    if [[ $CURRENT_UTIL_AVG -ge 0 ]]; then
         $say HPA object $REDIS_NAMESPACE/$HPA_NAME current utilization: $CURRENT_UTIL_AVG
     else
         $say Error: Current average utility not valid for HPA object $REDIS_NAMESPACE/$HPA_NAME
         exit $error_code
     fi
 
-    if [[ $TARGET_UTIL_AVG -ge 0 ]] && [[ $TARGET_UTIL_AVG -le 100 ]]; then
+    if [[ $TARGET_UTIL_AVG -ge 0 ]]; then
         $say HPA object $REDIS_NAMESPACE/$HPA_NAME target  utilization: $TARGET_UTIL_AVG
     else
         $say Error: Target average utility not valid for HPA object $REDIS_NAMESPACE/$HPA_NAME
         exit $error_code
     fi
 
-    if [[ $CURRENT_REPLICAS -ge 0 ]] && [[ $CURRENT_REPLICAS -le 1000 ]]; then
+    if [[ $CURRENT_REPLICAS -ge 0 ]]; then
         $say Current custom resource redisfailover ${REDIS_NAMESPACE}/${REDIS_NAME} replicas: $CURRENT_REPLICAS
     else
         $say Error: custom resource redisfailover ${REDIS_NAMESPACE}/${REDIS_NAME} not found
         exit $error_code
     fi
 
-    if [[ $STS_UPDATED_REPLICAS -ge 0 ]] && [[ $STS_UPDATED_REPLICAS -le 1000 ]]; then
+    if [[ $STS_UPDATED_REPLICAS -ge 0 ]]; then
         $say Current statefulset ${REDIS_NAMESPACE}/${STS_NAME} updated replicas: $STS_UPDATED_REPLICAS
     else
         $say Error: Statefulset ${REDIS_NAMESPACE}/${STS_NAME} not found
