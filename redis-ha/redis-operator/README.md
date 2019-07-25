@@ -33,6 +33,7 @@ kubectl apply -f hpa-v1.yaml
 if [[ -f "./run.sh" ]]; then
   kubectl delete configmap redis-monitor-script 
   kubectl create configmap redis-monitor-script --from-file=./run.sh
+  kubectl delete pod -l app=redis-monitor
 fi
 
 kubectl apply -f monitor-pod.yaml
