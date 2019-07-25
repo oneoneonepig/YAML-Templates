@@ -18,13 +18,13 @@ subjects:
   name: redis-monitor-sa
   namespace: default
 ---
-kind: ConfigMap
-apiVersion: v1
-metadata:
-  name: redis-monitor-script
-  namespace: default
-data:
-  run.sh: |-
+#kind: ConfigMap
+#apiVersion: v1
+#metadata:
+#  name: redis-monitor-script
+#  namespace: default
+#data:
+#  run.sh: |-
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -45,7 +45,7 @@ spec:
     spec:
       containers:
       - name: alpine
-        image: alpine:3.10
+        image: alpine
         imagePullPolicy: IfNotPresent
         command: ["/bin/sh"]
         args: ["-c", "/tmp/run.sh"]
@@ -56,5 +56,5 @@ spec:
       volumes:
       - name: runsh
         configMap:
-          name: runsh
+          name: redis-monitor-script
           defaultMode: 0755
