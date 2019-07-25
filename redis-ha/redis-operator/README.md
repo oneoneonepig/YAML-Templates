@@ -26,4 +26,9 @@ kubectl edit redisfailovers redisfailover
 kubectl apply -f hpa-v1.yaml
 ```
 
-## 
+## Create ConfigMap and monitoring pod
+
+```
+kubectl create configmap redis-monitor-script --from-file=./run.sh
+kubectl apply -f monitor-pod.yaml
+```
