@@ -1,0 +1,54 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: istio-ingress
+  namespace: istio-system
+spec:
+  podSelector:
+    matchLabels:
+      app: istio-ingressgateway
+  policyTypes:
+  - Ingress
+  ingress:
+  - from:
+    - ipBlock:
+        cidr: 118.163.1.132/32
+    ports:
+    - protocol: TCP
+      port: 80
+  - from:
+    - ipBlock:
+        cidr: 118.163.1.132/32
+    ports:
+    - protocol: TCP
+      port: 15001
+  - from:
+    - ipBlock:
+        cidr: 118.163.1.132/32
+    ports:
+    - protocol: TCP
+      port: 15002
+  - from:
+    - ipBlock:
+        cidr: 118.163.1.132/32
+    ports:
+    - protocol: TCP
+      port: 15003
+  - from:
+    - ipBlock:
+        cidr: 118.163.1.132/32
+    ports:
+    - protocol: TCP
+      port: 15004
+  - from:
+    - ipBlock:
+        cidr: 118.163.1.132/32
+    ports:
+    - protocol: TCP
+      port: 15005
+  - from:
+    - ipBlock:
+        cidr: 118.163.1.132/32
+    ports:
+    - protocol: TCP
+      port: 15006
