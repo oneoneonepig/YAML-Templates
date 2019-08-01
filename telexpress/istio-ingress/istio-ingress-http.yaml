@@ -31,5 +31,5 @@ spec:
     route:
     - destination:
         port:
-          number: 80
-        host: prom-grafana.prom.svc.cluster.local
+          number: 5601
+        host: kibana-kibana.elk.svc.cluster.local
