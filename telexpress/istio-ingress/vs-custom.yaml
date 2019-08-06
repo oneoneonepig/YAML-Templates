@@ -1,18 +1,3 @@
-apiVersion: networking.istio.io/v1alpha3
-kind: Gateway
-metadata:
-  name: gateway-custom1
-  namespace: istio-system
-spec:
-  selector:
-    istio: ingressgateway # use Istio default gateway implementation
-  servers:
-  - port:
-      number: 15004
-      name: http
-      protocol: HTTP
-    hosts:
-    - "*"
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
@@ -23,7 +8,7 @@ spec:
   hosts:
   - "*"
   gateways:
-  - gateway-custom1
+  - gw-custom1
   http:
   - match:
     - uri:
@@ -35,22 +20,6 @@ spec:
         host: prom-grafana.prom.svc.cluster.local
 ---
 apiVersion: networking.istio.io/v1alpha3
-kind: Gateway
-metadata:
-  name: gateway-custom2
-  namespace: istio-system
-spec:
-  selector:
-    istio: ingressgateway # use Istio default gateway implementation
-  servers:
-  - port:
-      number: 15005
-      name: http
-      protocol: HTTP
-    hosts:
-    - "*"
----
-apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
   name: custom2
@@ -59,7 +28,7 @@ spec:
   hosts:
   - "*"
   gateways:
-  - gateway-custom2
+  - gw-custom2
   http:
   - match:
     - uri:
@@ -71,22 +40,6 @@ spec:
         host: prom-prometheus-operator-alertmanager.prom.svc.cluster.local
 ---
 apiVersion: networking.istio.io/v1alpha3
-kind: Gateway
-metadata:
-  name: gateway-custom3
-  namespace: istio-system
-spec:
-  selector:
-    istio: ingressgateway # use Istio default gateway implementation
-  servers:
-  - port:
-      number: 15006
-      name: http
-      protocol: HTTP
-    hosts:
-    - "*"
----
-apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
   name: custom3
@@ -95,7 +48,7 @@ spec:
   hosts:
   - "*"
   gateways:
-  - gateway-custom3
+  - gw-custom3
   http:
   - match:
     - uri:
