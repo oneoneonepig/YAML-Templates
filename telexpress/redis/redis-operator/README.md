@@ -60,7 +60,7 @@ redis-cli --version
 
 ```
 apk update
-apk install alpine-sdk linux-headers tcl
+apk add alpine-sdk linux-headers tcl
 wget http://download.redis.io/releases/redis-5.0.5.tar.gz
 tar xzf redis-5.0.5.tar.gz
 cd redis-5.0.5
