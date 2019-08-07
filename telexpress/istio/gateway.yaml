@@ -40,7 +40,7 @@ spec:
     istio: ingressgateway
   servers:
   - port:
-      number: 15001
+      number: 30001
       name: http-istio-grafana
       protocol: HTTP
     hosts:
@@ -56,7 +56,7 @@ spec:
     istio: ingressgateway
   servers:
   - port:
-      number: 15002
+      number: 30002
       name: http-istio-kiali
       protocol: HTTP
     hosts:
@@ -72,7 +72,7 @@ spec:
     istio: ingressgateway
   servers:
   - port:
-      number: 15003
+      number: 30003
       name: http-istio-prom
       protocol: HTTP
     hosts:
@@ -88,7 +88,7 @@ spec:
     istio: ingressgateway
   servers:
   - port:
-      number: 15004
+      number: 30004
       name: http-custom1
       protocol: HTTP
     hosts:
@@ -104,7 +104,7 @@ spec:
     istio: ingressgateway
   servers:
   - port:
-      number: 15005
+      number: 30005
       name: http-custom2
       protocol: HTTP
     hosts:
@@ -120,7 +120,7 @@ spec:
     istio: ingressgateway
   servers:
   - port:
-      number: 15006
+      number: 30006
       name: http-custom3
       protocol: HTTP
     hosts:

@@ -1,0 +1,29 @@
+apiVersion: rbac.istio.io/v1alpha1
+kind: ClusterRbacConfig
+metadata:
+  name: default
+spec:
+  mode: "ON"
+---
+apiVersion: "rbac.istio.io/v1alpha1"
+kind: ServiceRole
+metadata:
+  name: istio-ingressgateway
+  namespace: istio-system
+spec:
+  rules:
+  - services: ["istio-ingressgateway.istio-system.svc.cluster.local"]
+    methods: ["*"]
+---
+apiVersion: "rbac.istio.io/v1alpha1"
+kind: ServiceRoleBinding
+metadata:
+  name: istio-ingressgateway-binding
+  namespace: istio-system
+spec:
+  subjects:
+  - properties:
+      source.ip: 118.163.1.132/32
+  roleRef:
+    kind: ServiceRole
+    name: "istio-ingressgateway"
