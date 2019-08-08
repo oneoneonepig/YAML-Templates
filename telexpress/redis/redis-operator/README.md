@@ -36,7 +36,6 @@ if [[ -f "./run.sh" ]]; then
   kubectl apply -f monitor-pod.yaml
   kubectl delete pod -n redis -l app=redis-monitor
 fi
-
 ```
 
 ## Install redis 5 (Ubuntu)
@@ -57,7 +56,6 @@ redis-cli --version
 
 ## Install redis 5 (alpine)
 
-
 ```
 apk update
 apk add alpine-sdk linux-headers tcl
@@ -67,4 +65,17 @@ cd redis-5.0.5
 make install
 # make test
 redis-cli --version
+```
+
+## Monitor resources in another terminal
+
+```
+watch -n 2 "kubectl get pod,hpa -n redis; echo; kubectl top pod -n redis && kubectl logs -n redis -l app=redis-monitor --tail=50"
+```
+
+## Start stress testing
+
+```
+kubectl run --image=redis:5 -it --generator=run-pod/v1 redis-test /bin/bash
+redis-benchmark -h redis-ro.redis -p 6379 -q -t get -r 1000000 -n 100000000 -P 16
 ```
