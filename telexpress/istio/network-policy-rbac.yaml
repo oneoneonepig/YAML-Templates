@@ -23,7 +23,7 @@ metadata:
 spec:
   subjects:
   - properties:
-      source.ip: 118.163.1.132/32
+      source.ip: 0.0.0.0/0
   roleRef:
     kind: ServiceRole
     name: "istio-ingressgateway"
