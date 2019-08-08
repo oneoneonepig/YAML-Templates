@@ -1,0 +1,27 @@
+apiVersion: "config.istio.io/v1alpha2"
+kind: handler
+metadata:
+  name: deny-handler
+spec:
+  compiledAdapter: denier
+  params:
+    status:
+      code: 7
+      message: Not allowed
+---
+apiVersion: "config.istio.io/v1alpha2"
+kind: instance
+metadata:
+  name: checknothing
+spec:
+  compiledTemplate: checknothing
+---
+apiVersion: "config.istio.io/v1alpha2"
+kind: rule
+metadata:
+  name: deny-frontend-to-nginx-v3
+spec:
+  match: source.labels["app"] == "frontend" && destination.labels["app"]=="nginx" && destination.labels["version"] == "v3"
+  actions:
+  - handler: deny-handler
+    instances: [ checknothing ]

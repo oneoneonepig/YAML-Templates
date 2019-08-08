@@ -1,0 +1,31 @@
+apiVersion: config.istio.io/v1alpha2
+kind: handler
+metadata:
+  name: whitelist
+spec:
+  compiledAdapter: listchecker
+  params:
+    # providerUrl: ordinarily black and white lists are maintained
+    # externally and fetched asynchronously using the providerUrl.
+    overrides: ["v1"]  # overrides provide a static list
+    blacklist: false
+---
+apiVersion: config.istio.io/v1alpha2
+kind: instance
+metadata:
+  name: appversion
+spec:
+  compiledTemplate: listentry
+  params:
+    value: destination.labels["version"]
+---
+apiVersion: config.istio.io/v1alpha2
+kind: rule
+metadata:
+  name: checkversion
+spec:
+  match: source.labels["app"] == "frontend" && destination.labels["app"] == "nginx"
+  actions:
+  - handler: whitelist
+    instances: [ appversion ]
+---
