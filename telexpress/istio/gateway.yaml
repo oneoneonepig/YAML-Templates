@@ -81,7 +81,7 @@ spec:
 apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
-  name: gw-custom1
+  name: gw-prom-grafana
   namespace: istio-system
 spec:
   selector:
@@ -89,7 +89,7 @@ spec:
   servers:
   - port:
       number: 30004
-      name: http-custom1
+      name: http-prom-grafana
       protocol: HTTP
     hosts:
     - "*"
@@ -97,7 +97,7 @@ spec:
 apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
-  name: gw-custom2
+  name: gw-alertmanager
   namespace: istio-system
 spec:
   selector:
@@ -105,7 +105,7 @@ spec:
   servers:
   - port:
       number: 30005
-      name: http-custom2
+      name: http-alertmanager
       protocol: HTTP
     hosts:
     - "*"
@@ -113,7 +113,7 @@ spec:
 apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
-  name: gw-custom3
+  name: gw-prometheus
   namespace: istio-system
 spec:
   selector:
@@ -121,7 +121,23 @@ spec:
   servers:
   - port:
       number: 30006
-      name: http-custom3
+      name: http-prometheus
+      protocol: HTTP
+    hosts:
+    - "*"
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: gw-kibana
+  namespace: istio-system
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+  - port:
+      number: 30007
+      name: http-kibana
       protocol: HTTP
     hosts:
     - "*"
