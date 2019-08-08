@@ -8,7 +8,6 @@ spec:
     apiVersion: apps/v1
     kind: StatefulSet
     name: rfr-redisfailover
-    namespace: redis
   minReplicas: 6
   maxReplicas: 6
   targetCPUUtilizationPercentage: 50

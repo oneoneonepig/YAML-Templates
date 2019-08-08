@@ -289,7 +289,7 @@ curl -sSk \
     -H "Authorization: Bearer $KUBE_TOKEN" \
     -H 'Accept: application/json' \
     -H 'Content-Type: application/merge-patch+json' \
-    https://$KUBERNETES_SERVICE_HOST:$KUBERNETES_PORT_443_TCP_PORT/apis/databases.spotahome.com/v1/namespaces/default/redisfailovers/redisfailover <<EOF
+    https://$KUBERNETES_SERVICE_HOST:$KUBERNETES_PORT_443_TCP_PORT/apis/databases.spotahome.com/v1/namespaces/${REDIS_NAMESPACE}/redisfailovers/${REDIS_NAME} <<EOF
 {
     "kind": "RedisFailover",
     "apiVersion": "databases.spotahome.com/v1",

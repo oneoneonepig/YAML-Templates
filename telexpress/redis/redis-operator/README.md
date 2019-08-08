@@ -17,7 +17,7 @@ kubectl apply -f basic.yaml
 ## Scale redis to desired replicas
 
 ```
-kubectl edit redisfailovers redisfailover
+kubectl edit redisfailovers -n redis redisfailover
 -> spec.redis.replicas: 6
 ```
 
@@ -31,12 +31,12 @@ kubectl apply -f hpa-v1.yaml
 
 ```
 if [[ -f "./run.sh" ]]; then
-  kubectl delete configmap -n redis redis-monitor-script 
+  kubectl delete configmap --ignore-not-found -n redis redis-monitor-script 
   kubectl create configmap -n redis redis-monitor-script --from-file=./run.sh
+  kubectl apply -f monitor-pod.yaml
   kubectl delete pod -n redis -l app=redis-monitor
 fi
 
-kubectl apply -f monitor-pod.yaml
 ```
 
 ## Install redis 5 (Ubuntu)
