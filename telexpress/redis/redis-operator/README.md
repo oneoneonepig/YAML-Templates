@@ -2,7 +2,7 @@
 
 ```
 git clone https://github.com/oneoneonepig/YAML-Templates.git
-cd ./redis-ha/redis-operator/
+cd YAML-Templates/telexpress/redis/redis-operator/
 ```
 
 ## Install CRD and create instance
