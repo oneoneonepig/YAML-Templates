@@ -8,6 +8,7 @@ cd YAML-Templates/telexpress/redis/redis-operator/
 ## Install CRD and create instance
 
 ```
+kubectl create namespace redis
 kubectl apply -f crd.yaml
 until kubectl get crd redisfailovers.databases.spotahome.com >/dev/null 2>&1; do echo "Waiting for redis-operator CRD creation..."; sleep 3; done && echo "redis-operator CRD creation complete"
 
@@ -38,7 +39,20 @@ if [[ -f "./run.sh" ]]; then
 fi
 ```
 
-## Install redis 5 (Ubuntu)
+## Monitor resources in another terminal
+
+```
+watch -n 2 "kubectl get pod,hpa -n redis; echo; kubectl top pod -n redis && kubectl logs -n redis -l app=redis-monitor --tail=50"
+```
+
+## Start stress testing
+
+```
+kubectl run --image=redis:5 -it --generator=run-pod/v1 redis-test /bin/bash
+redis-benchmark -h redis-ro.redis -p 6379 -q -t get -r 1000000 -n 100000000 -P 16
+```
+
+## (For testing) Install redis 5 - Ubuntu
 
 ```
 if [[ $EUID -ne 0 ]]; then
@@ -54,7 +68,7 @@ make install
 redis-cli --version
 ```
 
-## Install redis 5 (alpine)
+## (For testing) Install redis 5 - alpine
 
 ```
 apk update
@@ -65,17 +79,4 @@ cd redis-5.0.5
 make install
 # make test
 redis-cli --version
-```
-
-## Monitor resources in another terminal
-
-```
-watch -n 2 "kubectl get pod,hpa -n redis; echo; kubectl top pod -n redis && kubectl logs -n redis -l app=redis-monitor --tail=50"
-```
-
-## Start stress testing
-
-```
-kubectl run --image=redis:5 -it --generator=run-pod/v1 redis-test /bin/bash
-redis-benchmark -h redis-ro.redis -p 6379 -q -t get -r 1000000 -n 100000000 -P 16
 ```
