@@ -15,7 +15,6 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 14,
   "links": [],
   "panels": [
     {
@@ -113,52 +112,6 @@
               "type": "avg"
             },
             "type": "query"
-          },
-          {
-            "evaluator": {
-              "params": [
-                90
-              ],
-              "type": "gt"
-            },
-            "operator": {
-              "type": "or"
-            },
-            "query": {
-              "params": [
-                "E",
-                "5m",
-                "now"
-              ]
-            },
-            "reducer": {
-              "params": [],
-              "type": "avg"
-            },
-            "type": "query"
-          },
-          {
-            "evaluator": {
-              "params": [
-                90
-              ],
-              "type": "gt"
-            },
-            "operator": {
-              "type": "or"
-            },
-            "query": {
-              "params": [
-                "F",
-                "5m",
-                "now"
-              ]
-            },
-            "reducer": {
-              "params": [],
-              "type": "avg"
-            },
-            "type": "query"
           }
         ],
         "executionErrorState": "alerting",
@@ -170,6 +123,9 @@
         "notifications": [
           {
             "uid": "5FmRri5Wz"
+          },
+          {
+            "uid": "rAAR3m5Wz"
           }
         ]
       },
@@ -388,57 +344,11 @@
               "type": "gt"
             },
             "operator": {
-              "type": "or"
+              "type": "and"
             },
             "query": {
               "params": [
                 "D",
-                "5m",
-                "now"
-              ]
-            },
-            "reducer": {
-              "params": [],
-              "type": "avg"
-            },
-            "type": "query"
-          },
-          {
-            "evaluator": {
-              "params": [
-                90
-              ],
-              "type": "gt"
-            },
-            "operator": {
-              "type": "or"
-            },
-            "query": {
-              "params": [
-                "E",
-                "5m",
-                "now"
-              ]
-            },
-            "reducer": {
-              "params": [],
-              "type": "avg"
-            },
-            "type": "query"
-          },
-          {
-            "evaluator": {
-              "params": [
-                90
-              ],
-              "type": "gt"
-            },
-            "operator": {
-              "type": "or"
-            },
-            "query": {
-              "params": [
-                "F",
                 "5m",
                 "now"
               ]
@@ -459,6 +369,9 @@
         "notifications": [
           {
             "uid": "5FmRri5Wz"
+          },
+          {
+            "uid": "rAAR3m5Wz"
           }
         ]
       },
@@ -694,52 +607,6 @@
               "type": "avg"
             },
             "type": "query"
-          },
-          {
-            "evaluator": {
-              "params": [
-                90
-              ],
-              "type": "gt"
-            },
-            "operator": {
-              "type": "or"
-            },
-            "query": {
-              "params": [
-                "E",
-                "5m",
-                "now"
-              ]
-            },
-            "reducer": {
-              "params": [],
-              "type": "avg"
-            },
-            "type": "query"
-          },
-          {
-            "evaluator": {
-              "params": [
-                90
-              ],
-              "type": "gt"
-            },
-            "operator": {
-              "type": "or"
-            },
-            "query": {
-              "params": [
-                "F",
-                "5m",
-                "now"
-              ]
-            },
-            "reducer": {
-              "params": [],
-              "type": "avg"
-            },
-            "type": "query"
           }
         ],
         "executionErrorState": "alerting",
@@ -751,6 +618,9 @@
         "notifications": [
           {
             "uid": "5FmRri5Wz"
+          },
+          {
+            "uid": "rAAR3m5Wz"
           }
         ]
       },
@@ -929,7 +799,7 @@
     ]
   },
   "timezone": "",
-  "title": "Kubernetes / Nodes - Alerts",
+  "title": "Kubernetes / Nodes - Alerts Template",
   "uid": "uxu5-bvZks",
-  "version": 4
+  "version": 1
 }
