@@ -172,45 +172,45 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "max (sum by (cpu) (irate(node_cpu_seconds_total{ job=\"node-exporter\", mode!=\"idle\", instance=\"10.140.0.33:9100\"}[2m])) ) * 100\n",
+          "expr": "max (sum by (cpu) (irate(node_cpu_seconds_total{ job=\"node-exporter\", mode!=\"idle\", instance=\"_IP1_:9100\"}[2m])) ) * 100\n",
           "format": "time_series",
           "intervalFactor": 10,
-          "legendFormat": "10.140.0.33",
+          "legendFormat": "_IP1_",
           "refId": "A"
         },
         {
-          "expr": "max (sum by (cpu) (irate(node_cpu_seconds_total{ job=\"node-exporter\", mode!=\"idle\", instance=\"10.140.0.34:9100\"}[2m])) ) * 100\n",
+          "expr": "max (sum by (cpu) (irate(node_cpu_seconds_total{ job=\"node-exporter\", mode!=\"idle\", instance=\"_IP2_:9100\"}[2m])) ) * 100\n",
           "format": "time_series",
           "intervalFactor": 10,
-          "legendFormat": "10.140.0.34",
+          "legendFormat": "_IP2_",
           "refId": "B"
         },
         {
-          "expr": "max (sum by (cpu) (irate(node_cpu_seconds_total{ job=\"node-exporter\", mode!=\"idle\", instance=\"10.140.0.35:9100\"}[2m])) ) * 100\n",
+          "expr": "max (sum by (cpu) (irate(node_cpu_seconds_total{ job=\"node-exporter\", mode!=\"idle\", instance=\"_IP3_:9100\"}[2m])) ) * 100\n",
           "format": "time_series",
           "intervalFactor": 10,
-          "legendFormat": "10.140.0.35",
+          "legendFormat": "_IP3_",
           "refId": "C"
         },
         {
-          "expr": "max (sum by (cpu) (irate(node_cpu_seconds_total{ job=\"node-exporter\", mode!=\"idle\", instance=\"10.140.0.36:9100\"}[2m])) ) * 100\n",
+          "expr": "max (sum by (cpu) (irate(node_cpu_seconds_total{ job=\"node-exporter\", mode!=\"idle\", instance=\"_IP4_:9100\"}[2m])) ) * 100\n",
           "format": "time_series",
           "intervalFactor": 10,
-          "legendFormat": "10.140.0.36",
+          "legendFormat": "_IP4_",
           "refId": "D"
         },
         {
-          "expr": "max (sum by (cpu) (irate(node_cpu_seconds_total{ job=\"node-exporter\", mode!=\"idle\", instance=\"10.140.0.37:9100\"}[2m])) ) * 100\n",
+          "expr": "max (sum by (cpu) (irate(node_cpu_seconds_total{ job=\"node-exporter\", mode!=\"idle\", instance=\"_IP5_:9100\"}[2m])) ) * 100\n",
           "format": "time_series",
           "intervalFactor": 10,
-          "legendFormat": "10.140.0.37",
+          "legendFormat": "_IP5_",
           "refId": "E"
         },
         {
-          "expr": "max (sum by (cpu) (irate(node_cpu_seconds_total{ job=\"node-exporter\", mode!=\"idle\", instance=\"10.140.0.38:9100\"}[2m])) ) * 100\n",
+          "expr": "max (sum by (cpu) (irate(node_cpu_seconds_total{ job=\"node-exporter\", mode!=\"idle\", instance=\"_IP6_:9100\"}[2m])) ) * 100\n",
           "format": "time_series",
           "intervalFactor": 10,
-          "legendFormat": "10.140.0.38",
+          "legendFormat": "_IP6_",
           "refId": "F"
         }
       ],
@@ -419,46 +419,46 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "max(\n  node_memory_MemTotal_bytes{job=\"node-exporter\", instance=\"10.140.0.33:9100\"}\n  - node_memory_MemFree_bytes{job=\"node-exporter\", instance=\"10.140.0.33:9100\"}\n  - node_memory_Buffers_bytes{job=\"node-exporter\", instance=\"10.140.0.33:9100\"}\n  - node_memory_Cached_bytes{job=\"node-exporter\", instance=\"10.140.0.33:9100\"}\n) / max(node_memory_MemTotal_bytes{job=\"node-exporter\", instance=\"10.140.0.33:9100\"}) * 100",
+          "expr": "max(\n  node_memory_MemTotal_bytes{job=\"node-exporter\", instance=\"_IP1_:9100\"}\n  - node_memory_MemFree_bytes{job=\"node-exporter\", instance=\"_IP1_:9100\"}\n  - node_memory_Buffers_bytes{job=\"node-exporter\", instance=\"_IP1_:9100\"}\n  - node_memory_Cached_bytes{job=\"node-exporter\", instance=\"_IP1_:9100\"}\n) / max(node_memory_MemTotal_bytes{job=\"node-exporter\", instance=\"_IP1_:9100\"}) * 100",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 1,
-          "legendFormat": "10.140.0.33",
+          "legendFormat": "_IP1_",
           "refId": "A"
         },
         {
-          "expr": "max(\n  node_memory_MemTotal_bytes{job=\"node-exporter\", instance=\"10.140.0.34:9100\"}\n  - node_memory_MemFree_bytes{job=\"node-exporter\", instance=\"10.140.0.34:9100\"}\n  - node_memory_Buffers_bytes{job=\"node-exporter\", instance=\"10.140.0.34:9100\"}\n  - node_memory_Cached_bytes{job=\"node-exporter\", instance=\"10.140.0.34:9100\"}\n) / max(node_memory_MemTotal_bytes{job=\"node-exporter\", instance=\"10.140.0.34:9100\"}) * 100",
+          "expr": "max(\n  node_memory_MemTotal_bytes{job=\"node-exporter\", instance=\"_IP2_:9100\"}\n  - node_memory_MemFree_bytes{job=\"node-exporter\", instance=\"_IP2_:9100\"}\n  - node_memory_Buffers_bytes{job=\"node-exporter\", instance=\"_IP2_:9100\"}\n  - node_memory_Cached_bytes{job=\"node-exporter\", instance=\"_IP2_:9100\"}\n) / max(node_memory_MemTotal_bytes{job=\"node-exporter\", instance=\"_IP2_:9100\"}) * 100",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "10.140.0.34",
+          "legendFormat": "_IP2_",
           "refId": "B"
         },
         {
-          "expr": "max(\n  node_memory_MemTotal_bytes{job=\"node-exporter\", instance=\"10.140.0.35:9100\"}\n  - node_memory_MemFree_bytes{job=\"node-exporter\", instance=\"10.140.0.35:9100\"}\n  - node_memory_Buffers_bytes{job=\"node-exporter\", instance=\"10.140.0.35:9100\"}\n  - node_memory_Cached_bytes{job=\"node-exporter\", instance=\"10.140.0.35:9100\"}\n) / max(node_memory_MemTotal_bytes{job=\"node-exporter\", instance=\"10.140.0.35:9100\"}) * 100",
+          "expr": "max(\n  node_memory_MemTotal_bytes{job=\"node-exporter\", instance=\"_IP3_:9100\"}\n  - node_memory_MemFree_bytes{job=\"node-exporter\", instance=\"_IP3_:9100\"}\n  - node_memory_Buffers_bytes{job=\"node-exporter\", instance=\"_IP3_:9100\"}\n  - node_memory_Cached_bytes{job=\"node-exporter\", instance=\"_IP3_:9100\"}\n) / max(node_memory_MemTotal_bytes{job=\"node-exporter\", instance=\"_IP3_:9100\"}) * 100",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "10.140.0.35",
+          "legendFormat": "_IP3_",
           "refId": "C"
         },
         {
-          "expr": "max(\n  node_memory_MemTotal_bytes{job=\"node-exporter\", instance=\"10.140.0.36:9100\"}\n  - node_memory_MemFree_bytes{job=\"node-exporter\", instance=\"10.140.0.36:9100\"}\n  - node_memory_Buffers_bytes{job=\"node-exporter\", instance=\"10.140.0.36:9100\"}\n  - node_memory_Cached_bytes{job=\"node-exporter\", instance=\"10.140.0.36:9100\"}\n) / max(node_memory_MemTotal_bytes{job=\"node-exporter\", instance=\"10.140.0.36:9100\"}) * 100",
+          "expr": "max(\n  node_memory_MemTotal_bytes{job=\"node-exporter\", instance=\"_IP4_:9100\"}\n  - node_memory_MemFree_bytes{job=\"node-exporter\", instance=\"_IP4_:9100\"}\n  - node_memory_Buffers_bytes{job=\"node-exporter\", instance=\"_IP4_:9100\"}\n  - node_memory_Cached_bytes{job=\"node-exporter\", instance=\"_IP4_:9100\"}\n) / max(node_memory_MemTotal_bytes{job=\"node-exporter\", instance=\"_IP4_:9100\"}) * 100",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "10.140.0.36",
+          "legendFormat": "_IP4_",
           "refId": "D"
         },
         {
-          "expr": "max(\n  node_memory_MemTotal_bytes{job=\"node-exporter\", instance=\"10.140.0.37:9100\"}\n  - node_memory_MemFree_bytes{job=\"node-exporter\", instance=\"10.140.0.37:9100\"}\n  - node_memory_Buffers_bytes{job=\"node-exporter\", instance=\"10.140.0.37:9100\"}\n  - node_memory_Cached_bytes{job=\"node-exporter\", instance=\"10.140.0.37:9100\"}\n) / max(node_memory_MemTotal_bytes{job=\"node-exporter\", instance=\"10.140.0.37:9100\"}) * 100",
+          "expr": "max(\n  node_memory_MemTotal_bytes{job=\"node-exporter\", instance=\"_IP5_:9100\"}\n  - node_memory_MemFree_bytes{job=\"node-exporter\", instance=\"_IP5_:9100\"}\n  - node_memory_Buffers_bytes{job=\"node-exporter\", instance=\"_IP5_:9100\"}\n  - node_memory_Cached_bytes{job=\"node-exporter\", instance=\"_IP5_:9100\"}\n) / max(node_memory_MemTotal_bytes{job=\"node-exporter\", instance=\"_IP5_:9100\"}) * 100",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "10.140.0.37",
+          "legendFormat": "_IP5_",
           "refId": "E"
         },
         {
-          "expr": "max(\n  node_memory_MemTotal_bytes{job=\"node-exporter\", instance=\"10.140.0.38:9100\"}\n  - node_memory_MemFree_bytes{job=\"node-exporter\", instance=\"10.140.0.38:9100\"}\n  - node_memory_Buffers_bytes{job=\"node-exporter\", instance=\"10.140.0.38:9100\"}\n  - node_memory_Cached_bytes{job=\"node-exporter\", instance=\"10.140.0.38:9100\"}\n) / max(node_memory_MemTotal_bytes{job=\"node-exporter\", instance=\"10.140.0.38:9100\"}) * 100",
+          "expr": "max(\n  node_memory_MemTotal_bytes{job=\"node-exporter\", instance=\"_IP6_:9100\"}\n  - node_memory_MemFree_bytes{job=\"node-exporter\", instance=\"_IP6_:9100\"}\n  - node_memory_Buffers_bytes{job=\"node-exporter\", instance=\"_IP6_:9100\"}\n  - node_memory_Cached_bytes{job=\"node-exporter\", instance=\"_IP6_:9100\"}\n) / max(node_memory_MemTotal_bytes{job=\"node-exporter\", instance=\"_IP6_:9100\"}) * 100",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "10.140.0.38",
+          "legendFormat": "_IP6_",
           "refId": "F"
         }
       ],
@@ -668,46 +668,46 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "max by (namespace, pod, device) (\n  (\n    node_filesystem_size_bytes{fstype=~\"ext[234]|btrfs|xfs|zfs\", mountpoint=\"/\", instance=\"10.140.0.33:9100\", job=\"node-exporter\"} -\n    node_filesystem_avail_bytes{fstype=~\"ext[234]|btrfs|xfs|zfs\", mountpoint=\"/\", instance=\"10.140.0.33:9100\", job=\"node-exporter\"}\n  ) / node_filesystem_size_bytes{fstype=~\"ext[234]|btrfs|xfs|zfs\", mountpoint=\"/\", instance=\"10.140.0.33:9100\", job=\"node-exporter\"}\n) * 100",
+          "expr": "max by (namespace, pod, device) (\n  (\n    node_filesystem_size_bytes{fstype=~\"ext[234]|btrfs|xfs|zfs\", mountpoint=\"/\", instance=\"_IP1_:9100\", job=\"node-exporter\"} -\n    node_filesystem_avail_bytes{fstype=~\"ext[234]|btrfs|xfs|zfs\", mountpoint=\"/\", instance=\"_IP1_:9100\", job=\"node-exporter\"}\n  ) / node_filesystem_size_bytes{fstype=~\"ext[234]|btrfs|xfs|zfs\", mountpoint=\"/\", instance=\"_IP1_:9100\", job=\"node-exporter\"}\n) * 100",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 2,
-          "legendFormat": "10.140.0.33",
+          "legendFormat": "_IP1_",
           "refId": "A"
         },
         {
-          "expr": "max by (namespace, pod, device) (\n  (\n    node_filesystem_size_bytes{fstype=~\"ext[234]|btrfs|xfs|zfs\", mountpoint=\"/\", instance=\"10.140.0.34:9100\", job=\"node-exporter\"} -\n    node_filesystem_avail_bytes{fstype=~\"ext[234]|btrfs|xfs|zfs\", mountpoint=\"/\", instance=\"10.140.0.34:9100\", job=\"node-exporter\"}\n  ) / node_filesystem_size_bytes{fstype=~\"ext[234]|btrfs|xfs|zfs\", mountpoint=\"/\", instance=\"10.140.0.34:9100\", job=\"node-exporter\"}\n) * 100",
+          "expr": "max by (namespace, pod, device) (\n  (\n    node_filesystem_size_bytes{fstype=~\"ext[234]|btrfs|xfs|zfs\", mountpoint=\"/\", instance=\"_IP2_:9100\", job=\"node-exporter\"} -\n    node_filesystem_avail_bytes{fstype=~\"ext[234]|btrfs|xfs|zfs\", mountpoint=\"/\", instance=\"_IP2_:9100\", job=\"node-exporter\"}\n  ) / node_filesystem_size_bytes{fstype=~\"ext[234]|btrfs|xfs|zfs\", mountpoint=\"/\", instance=\"_IP2_:9100\", job=\"node-exporter\"}\n) * 100",
           "format": "time_series",
           "intervalFactor": 2,
-          "legendFormat": "10.140.0.34",
+          "legendFormat": "_IP2_",
           "refId": "B"
         },
         {
-          "expr": "max by (namespace, pod, device) (\n  (\n    node_filesystem_size_bytes{fstype=~\"ext[234]|btrfs|xfs|zfs\", mountpoint=\"/\", instance=\"10.140.0.35:9100\", job=\"node-exporter\"} -\n    node_filesystem_avail_bytes{fstype=~\"ext[234]|btrfs|xfs|zfs\", mountpoint=\"/\", instance=\"10.140.0.35:9100\", job=\"node-exporter\"}\n  ) / node_filesystem_size_bytes{fstype=~\"ext[234]|btrfs|xfs|zfs\", mountpoint=\"/\", instance=\"10.140.0.35:9100\", job=\"node-exporter\"}\n) * 100",
+          "expr": "max by (namespace, pod, device) (\n  (\n    node_filesystem_size_bytes{fstype=~\"ext[234]|btrfs|xfs|zfs\", mountpoint=\"/\", instance=\"_IP3_:9100\", job=\"node-exporter\"} -\n    node_filesystem_avail_bytes{fstype=~\"ext[234]|btrfs|xfs|zfs\", mountpoint=\"/\", instance=\"_IP3_:9100\", job=\"node-exporter\"}\n  ) / node_filesystem_size_bytes{fstype=~\"ext[234]|btrfs|xfs|zfs\", mountpoint=\"/\", instance=\"_IP3_:9100\", job=\"node-exporter\"}\n) * 100",
           "format": "time_series",
           "intervalFactor": 2,
-          "legendFormat": "10.140.0.35",
+          "legendFormat": "_IP3_",
           "refId": "C"
         },
         {
-          "expr": "max by (namespace, pod, device) (\n  (\n    node_filesystem_size_bytes{fstype=~\"ext[234]|btrfs|xfs|zfs\", mountpoint=\"/\", instance=\"10.140.0.36:9100\", job=\"node-exporter\"} -\n    node_filesystem_avail_bytes{fstype=~\"ext[234]|btrfs|xfs|zfs\", mountpoint=\"/\", instance=\"10.140.0.36:9100\", job=\"node-exporter\"}\n  ) / node_filesystem_size_bytes{fstype=~\"ext[234]|btrfs|xfs|zfs\", mountpoint=\"/\", instance=\"10.140.0.36:9100\", job=\"node-exporter\"}\n) * 100",
+          "expr": "max by (namespace, pod, device) (\n  (\n    node_filesystem_size_bytes{fstype=~\"ext[234]|btrfs|xfs|zfs\", mountpoint=\"/\", instance=\"_IP4_:9100\", job=\"node-exporter\"} -\n    node_filesystem_avail_bytes{fstype=~\"ext[234]|btrfs|xfs|zfs\", mountpoint=\"/\", instance=\"_IP4_:9100\", job=\"node-exporter\"}\n  ) / node_filesystem_size_bytes{fstype=~\"ext[234]|btrfs|xfs|zfs\", mountpoint=\"/\", instance=\"_IP4_:9100\", job=\"node-exporter\"}\n) * 100",
           "format": "time_series",
           "intervalFactor": 2,
-          "legendFormat": "10.140.0.36",
+          "legendFormat": "_IP4_",
           "refId": "D"
         },
         {
-          "expr": "max by (namespace, pod, device) (\n  (\n    node_filesystem_size_bytes{fstype=~\"ext[234]|btrfs|xfs|zfs\", mountpoint=\"/\", instance=\"10.140.0.37:9100\", job=\"node-exporter\"} -\n    node_filesystem_avail_bytes{fstype=~\"ext[234]|btrfs|xfs|zfs\", mountpoint=\"/\", instance=\"10.140.0.37:9100\", job=\"node-exporter\"}\n  ) / node_filesystem_size_bytes{fstype=~\"ext[234]|btrfs|xfs|zfs\", mountpoint=\"/\", instance=\"10.140.0.37:9100\", job=\"node-exporter\"}\n) * 100",
+          "expr": "max by (namespace, pod, device) (\n  (\n    node_filesystem_size_bytes{fstype=~\"ext[234]|btrfs|xfs|zfs\", mountpoint=\"/\", instance=\"_IP5_:9100\", job=\"node-exporter\"} -\n    node_filesystem_avail_bytes{fstype=~\"ext[234]|btrfs|xfs|zfs\", mountpoint=\"/\", instance=\"_IP5_:9100\", job=\"node-exporter\"}\n  ) / node_filesystem_size_bytes{fstype=~\"ext[234]|btrfs|xfs|zfs\", mountpoint=\"/\", instance=\"_IP5_:9100\", job=\"node-exporter\"}\n) * 100",
           "format": "time_series",
           "intervalFactor": 2,
-          "legendFormat": "10.140.0.37",
+          "legendFormat": "_IP5_",
           "refId": "E"
         },
         {
-          "expr": "max by (namespace, pod, device) (\n  (\n    node_filesystem_size_bytes{fstype=~\"ext[234]|btrfs|xfs|zfs\", mountpoint=\"/\", instance=\"10.140.0.38:9100\", job=\"node-exporter\"} -\n    node_filesystem_avail_bytes{fstype=~\"ext[234]|btrfs|xfs|zfs\", mountpoint=\"/\", instance=\"10.140.0.38:9100\", job=\"node-exporter\"}\n  ) / node_filesystem_size_bytes{fstype=~\"ext[234]|btrfs|xfs|zfs\", mountpoint=\"/\", instance=\"10.140.0.38:9100\", job=\"node-exporter\"}\n) * 100",
+          "expr": "max by (namespace, pod, device) (\n  (\n    node_filesystem_size_bytes{fstype=~\"ext[234]|btrfs|xfs|zfs\", mountpoint=\"/\", instance=\"_IP6_:9100\", job=\"node-exporter\"} -\n    node_filesystem_avail_bytes{fstype=~\"ext[234]|btrfs|xfs|zfs\", mountpoint=\"/\", instance=\"_IP6_:9100\", job=\"node-exporter\"}\n  ) / node_filesystem_size_bytes{fstype=~\"ext[234]|btrfs|xfs|zfs\", mountpoint=\"/\", instance=\"_IP6_:9100\", job=\"node-exporter\"}\n) * 100",
           "format": "time_series",
           "intervalFactor": 2,
-          "legendFormat": "10.140.0.38",
+          "legendFormat": "_IP6_",
           "refId": "F"
         }
       ],

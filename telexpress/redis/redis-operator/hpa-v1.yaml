@@ -8,6 +8,6 @@ spec:
     apiVersion: apps/v1
     kind: StatefulSet
     name: rfr-redisfailover
-  minReplicas: 6
-  maxReplicas: 6
+  minReplicas: 3
+  maxReplicas: 3
   targetCPUUtilizationPercentage: 50
