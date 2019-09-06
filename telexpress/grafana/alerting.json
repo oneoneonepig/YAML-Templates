@@ -15,6 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
+  "id": 19,
   "links": [],
   "panels": [
     {
@@ -43,121 +44,6 @@
               "type": "avg"
             },
             "type": "query"
-          },
-          {
-            "evaluator": {
-              "params": [
-                90
-              ],
-              "type": "gt"
-            },
-            "operator": {
-              "type": "or"
-            },
-            "query": {
-              "params": [
-                "B",
-                "5m",
-                "now"
-              ]
-            },
-            "reducer": {
-              "params": [],
-              "type": "avg"
-            },
-            "type": "query"
-          },
-          {
-            "evaluator": {
-              "params": [
-                90
-              ],
-              "type": "gt"
-            },
-            "operator": {
-              "type": "or"
-            },
-            "query": {
-              "params": [
-                "C",
-                "5m",
-                "now"
-              ]
-            },
-            "reducer": {
-              "params": [],
-              "type": "avg"
-            },
-            "type": "query"
-          },
-          {
-            "evaluator": {
-              "params": [
-                90
-              ],
-              "type": "gt"
-            },
-            "operator": {
-              "type": "or"
-            },
-            "query": {
-              "params": [
-                "D",
-                "5m",
-                "now"
-              ]
-            },
-            "reducer": {
-              "params": [],
-              "type": "avg"
-            },
-            "type": "query"
-          },
-          {
-            "evaluator": {
-              "params": [
-                90
-              ],
-              "type": "gt"
-            },
-            "operator": {
-              "type": "or"
-            },
-            "query": {
-              "params": [
-                "E",
-                "5m",
-                "now"
-              ]
-            },
-            "reducer": {
-              "params": [],
-              "type": "avg"
-            },
-            "type": "query"
-          },
-          {
-            "evaluator": {
-              "params": [
-                90
-              ],
-              "type": "gt"
-            },
-            "operator": {
-              "type": "or"
-            },
-            "query": {
-              "params": [
-                "F",
-                "5m",
-                "now"
-              ]
-            },
-            "reducer": {
-              "params": [],
-              "type": "avg"
-            },
-            "type": "query"
           }
         ],
         "executionErrorState": "alerting",
@@ -172,6 +58,9 @@
           },
           {
             "uid": "rAAR3m5Wz"
+          },
+          {
+            "uid": "mqrjc7cZz"
           }
         ]
       },
@@ -218,46 +107,11 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "max (sum by (cpu) (irate(node_cpu_seconds_total{ job=\"node-exporter\", mode!=\"idle\", instance=\"_IP1_:9100\"}[2m])) ) * 100\n",
+          "expr": "avg(sum by (cpu,instance) (irate(node_cpu_seconds_total{ job=\"node-exporter\", mode!=\"idle\"}[2m]))) by (instance) * 100",
           "format": "time_series",
           "intervalFactor": 10,
-          "legendFormat": "_IP1_",
+          "legendFormat": "{{instance}}",
           "refId": "A"
-        },
-        {
-          "expr": "max (sum by (cpu) (irate(node_cpu_seconds_total{ job=\"node-exporter\", mode!=\"idle\", instance=\"_IP2_:9100\"}[2m])) ) * 100\n",
-          "format": "time_series",
-          "intervalFactor": 10,
-          "legendFormat": "_IP2_",
-          "refId": "B"
-        },
-        {
-          "expr": "max (sum by (cpu) (irate(node_cpu_seconds_total{ job=\"node-exporter\", mode!=\"idle\", instance=\"_IP3_:9100\"}[2m])) ) * 100\n",
-          "format": "time_series",
-          "intervalFactor": 10,
-          "legendFormat": "_IP3_",
-          "refId": "C"
-        },
-        {
-          "expr": "max (sum by (cpu) (irate(node_cpu_seconds_total{ job=\"node-exporter\", mode!=\"idle\", instance=\"_IP4_:9100\"}[2m])) ) * 100\n",
-          "format": "time_series",
-          "intervalFactor": 10,
-          "legendFormat": "_IP4_",
-          "refId": "D"
-        },
-        {
-          "expr": "max (sum by (cpu) (irate(node_cpu_seconds_total{ job=\"node-exporter\", mode!=\"idle\", instance=\"_IP5_:9100\"}[2m])) ) * 100\n",
-          "format": "time_series",
-          "intervalFactor": 10,
-          "legendFormat": "_IP5_",
-          "refId": "E"
-        },
-        {
-          "expr": "max (sum by (cpu) (irate(node_cpu_seconds_total{ job=\"node-exporter\", mode!=\"idle\", instance=\"_IP6_:9100\"}[2m])) ) * 100\n",
-          "format": "time_series",
-          "intervalFactor": 10,
-          "legendFormat": "_IP6_",
-          "refId": "F"
         }
       ],
       "thresholds": [
@@ -335,121 +189,6 @@
               "type": "avg"
             },
             "type": "query"
-          },
-          {
-            "evaluator": {
-              "params": [
-                90
-              ],
-              "type": "gt"
-            },
-            "operator": {
-              "type": "or"
-            },
-            "query": {
-              "params": [
-                "B",
-                "5m",
-                "now"
-              ]
-            },
-            "reducer": {
-              "params": [],
-              "type": "avg"
-            },
-            "type": "query"
-          },
-          {
-            "evaluator": {
-              "params": [
-                90
-              ],
-              "type": "gt"
-            },
-            "operator": {
-              "type": "or"
-            },
-            "query": {
-              "params": [
-                "C",
-                "5m",
-                "now"
-              ]
-            },
-            "reducer": {
-              "params": [],
-              "type": "avg"
-            },
-            "type": "query"
-          },
-          {
-            "evaluator": {
-              "params": [
-                90
-              ],
-              "type": "gt"
-            },
-            "operator": {
-              "type": "or"
-            },
-            "query": {
-              "params": [
-                "D",
-                "5m",
-                "now"
-              ]
-            },
-            "reducer": {
-              "params": [],
-              "type": "avg"
-            },
-            "type": "query"
-          },
-          {
-            "evaluator": {
-              "params": [
-                90
-              ],
-              "type": "gt"
-            },
-            "operator": {
-              "type": "or"
-            },
-            "query": {
-              "params": [
-                "E",
-                "5m",
-                "now"
-              ]
-            },
-            "reducer": {
-              "params": [],
-              "type": "avg"
-            },
-            "type": "query"
-          },
-          {
-            "evaluator": {
-              "params": [
-                90
-              ],
-              "type": "gt"
-            },
-            "operator": {
-              "type": "or"
-            },
-            "query": {
-              "params": [
-                "F",
-                "5m",
-                "now"
-              ]
-            },
-            "reducer": {
-              "params": [],
-              "type": "avg"
-            },
-            "type": "query"
           }
         ],
         "executionErrorState": "alerting",
@@ -464,6 +203,9 @@
           },
           {
             "uid": "rAAR3m5Wz"
+          },
+          {
+            "uid": "mqrjc7cZz"
           }
         ]
       },
@@ -511,47 +253,13 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "max(\n  node_memory_MemTotal_bytes{job=\"node-exporter\", instance=\"_IP1_:9100\"}\n  - node_memory_MemFree_bytes{job=\"node-exporter\", instance=\"_IP1_:9100\"}\n  - node_memory_Buffers_bytes{job=\"node-exporter\", instance=\"_IP1_:9100\"}\n  - node_memory_Cached_bytes{job=\"node-exporter\", instance=\"_IP1_:9100\"}\n) / max(node_memory_MemTotal_bytes{job=\"node-exporter\", instance=\"_IP1_:9100\"}) * 100",
+          "expr": "max(\r\n  node_memory_MemTotal_bytes{job=\"node-exporter\"}\r\n  - node_memory_MemFree_bytes{job=\"node-exporter\"}\r\n  - node_memory_Buffers_bytes{job=\"node-exporter\"}\r\n  - node_memory_Cached_bytes{job=\"node-exporter\"}\r\n) by (instance)/ max(node_memory_MemTotal_bytes{job=\"node-exporter\"}) by (instance)* 100",
           "format": "time_series",
           "hide": false,
+          "instant": false,
           "intervalFactor": 1,
-          "legendFormat": "_IP1_",
+          "legendFormat": "{{instance}}",
           "refId": "A"
-        },
-        {
-          "expr": "max(\n  node_memory_MemTotal_bytes{job=\"node-exporter\", instance=\"_IP2_:9100\"}\n  - node_memory_MemFree_bytes{job=\"node-exporter\", instance=\"_IP2_:9100\"}\n  - node_memory_Buffers_bytes{job=\"node-exporter\", instance=\"_IP2_:9100\"}\n  - node_memory_Cached_bytes{job=\"node-exporter\", instance=\"_IP2_:9100\"}\n) / max(node_memory_MemTotal_bytes{job=\"node-exporter\", instance=\"_IP2_:9100\"}) * 100",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "_IP2_",
-          "refId": "B"
-        },
-        {
-          "expr": "max(\n  node_memory_MemTotal_bytes{job=\"node-exporter\", instance=\"_IP3_:9100\"}\n  - node_memory_MemFree_bytes{job=\"node-exporter\", instance=\"_IP3_:9100\"}\n  - node_memory_Buffers_bytes{job=\"node-exporter\", instance=\"_IP3_:9100\"}\n  - node_memory_Cached_bytes{job=\"node-exporter\", instance=\"_IP3_:9100\"}\n) / max(node_memory_MemTotal_bytes{job=\"node-exporter\", instance=\"_IP3_:9100\"}) * 100",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "_IP3_",
-          "refId": "C"
-        },
-        {
-          "expr": "max(\n  node_memory_MemTotal_bytes{job=\"node-exporter\", instance=\"_IP4_:9100\"}\n  - node_memory_MemFree_bytes{job=\"node-exporter\", instance=\"_IP4_:9100\"}\n  - node_memory_Buffers_bytes{job=\"node-exporter\", instance=\"_IP4_:9100\"}\n  - node_memory_Cached_bytes{job=\"node-exporter\", instance=\"_IP4_:9100\"}\n) / max(node_memory_MemTotal_bytes{job=\"node-exporter\", instance=\"_IP4_:9100\"}) * 100",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "_IP4_",
-          "refId": "D"
-        },
-        {
-          "expr": "max(\n  node_memory_MemTotal_bytes{job=\"node-exporter\", instance=\"_IP5_:9100\"}\n  - node_memory_MemFree_bytes{job=\"node-exporter\", instance=\"_IP5_:9100\"}\n  - node_memory_Buffers_bytes{job=\"node-exporter\", instance=\"_IP5_:9100\"}\n  - node_memory_Cached_bytes{job=\"node-exporter\", instance=\"_IP5_:9100\"}\n) / max(node_memory_MemTotal_bytes{job=\"node-exporter\", instance=\"_IP5_:9100\"}) * 100",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "_IP5_",
-          "refId": "E"
-        },
-        {
-          "expr": "max(\n  node_memory_MemTotal_bytes{job=\"node-exporter\", instance=\"_IP6_:9100\"}\n  - node_memory_MemFree_bytes{job=\"node-exporter\", instance=\"_IP6_:9100\"}\n  - node_memory_Buffers_bytes{job=\"node-exporter\", instance=\"_IP6_:9100\"}\n  - node_memory_Cached_bytes{job=\"node-exporter\", instance=\"_IP6_:9100\"}\n) / max(node_memory_MemTotal_bytes{job=\"node-exporter\", instance=\"_IP6_:9100\"}) * 100",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "_IP6_",
-          "refId": "F"
         }
       ],
       "thresholds": [
@@ -630,121 +338,6 @@
               "type": "avg"
             },
             "type": "query"
-          },
-          {
-            "evaluator": {
-              "params": [
-                90
-              ],
-              "type": "gt"
-            },
-            "operator": {
-              "type": "or"
-            },
-            "query": {
-              "params": [
-                "B",
-                "5m",
-                "now"
-              ]
-            },
-            "reducer": {
-              "params": [],
-              "type": "avg"
-            },
-            "type": "query"
-          },
-          {
-            "evaluator": {
-              "params": [
-                90
-              ],
-              "type": "gt"
-            },
-            "operator": {
-              "type": "or"
-            },
-            "query": {
-              "params": [
-                "C",
-                "5m",
-                "now"
-              ]
-            },
-            "reducer": {
-              "params": [],
-              "type": "avg"
-            },
-            "type": "query"
-          },
-          {
-            "evaluator": {
-              "params": [
-                90
-              ],
-              "type": "gt"
-            },
-            "operator": {
-              "type": "or"
-            },
-            "query": {
-              "params": [
-                "D",
-                "5m",
-                "now"
-              ]
-            },
-            "reducer": {
-              "params": [],
-              "type": "avg"
-            },
-            "type": "query"
-          },
-          {
-            "evaluator": {
-              "params": [
-                90
-              ],
-              "type": "gt"
-            },
-            "operator": {
-              "type": "or"
-            },
-            "query": {
-              "params": [
-                "E",
-                "5m",
-                "now"
-              ]
-            },
-            "reducer": {
-              "params": [],
-              "type": "avg"
-            },
-            "type": "query"
-          },
-          {
-            "evaluator": {
-              "params": [
-                90
-              ],
-              "type": "gt"
-            },
-            "operator": {
-              "type": "or"
-            },
-            "query": {
-              "params": [
-                "F",
-                "5m",
-                "now"
-              ]
-            },
-            "reducer": {
-              "params": [],
-              "type": "avg"
-            },
-            "type": "query"
           }
         ],
         "executionErrorState": "alerting",
@@ -759,6 +352,9 @@
           },
           {
             "uid": "rAAR3m5Wz"
+          },
+          {
+            "uid": "mqrjc7cZz"
           }
         ]
       },
@@ -806,47 +402,10 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "max by (namespace, pod, device) (\n  (\n    node_filesystem_size_bytes{fstype=~\"ext[234]|btrfs|xfs|zfs\", mountpoint=\"/\", instance=\"_IP1_:9100\", job=\"node-exporter\"} -\n    node_filesystem_avail_bytes{fstype=~\"ext[234]|btrfs|xfs|zfs\", mountpoint=\"/\", instance=\"_IP1_:9100\", job=\"node-exporter\"}\n  ) / node_filesystem_size_bytes{fstype=~\"ext[234]|btrfs|xfs|zfs\", mountpoint=\"/\", instance=\"_IP1_:9100\", job=\"node-exporter\"}\n) * 100",
-          "format": "time_series",
-          "hide": false,
+          "expr": "max by (namespace, pod, device, instance) (\n  (\n    node_filesystem_size_bytes{fstype=~\"ext[234]|btrfs|xfs|zfs\", mountpoint=\"/\", job=\"node-exporter\"} -\n    node_filesystem_avail_bytes{fstype=~\"ext[234]|btrfs|xfs|zfs\", mountpoint=\"/\", job=\"node-exporter\"}\n  ) / node_filesystem_size_bytes{fstype=~\"ext[234]|btrfs|xfs|zfs\", mountpoint=\"/\", job=\"node-exporter\"}\n) * 100",
           "intervalFactor": 2,
-          "legendFormat": "_IP1_",
+          "legendFormat": "{{instance}}",
           "refId": "A"
-        },
-        {
-          "expr": "max by (namespace, pod, device) (\n  (\n    node_filesystem_size_bytes{fstype=~\"ext[234]|btrfs|xfs|zfs\", mountpoint=\"/\", instance=\"_IP2_:9100\", job=\"node-exporter\"} -\n    node_filesystem_avail_bytes{fstype=~\"ext[234]|btrfs|xfs|zfs\", mountpoint=\"/\", instance=\"_IP2_:9100\", job=\"node-exporter\"}\n  ) / node_filesystem_size_bytes{fstype=~\"ext[234]|btrfs|xfs|zfs\", mountpoint=\"/\", instance=\"_IP2_:9100\", job=\"node-exporter\"}\n) * 100",
-          "format": "time_series",
-          "intervalFactor": 2,
-          "legendFormat": "_IP2_",
-          "refId": "B"
-        },
-        {
-          "expr": "max by (namespace, pod, device) (\n  (\n    node_filesystem_size_bytes{fstype=~\"ext[234]|btrfs|xfs|zfs\", mountpoint=\"/\", instance=\"_IP3_:9100\", job=\"node-exporter\"} -\n    node_filesystem_avail_bytes{fstype=~\"ext[234]|btrfs|xfs|zfs\", mountpoint=\"/\", instance=\"_IP3_:9100\", job=\"node-exporter\"}\n  ) / node_filesystem_size_bytes{fstype=~\"ext[234]|btrfs|xfs|zfs\", mountpoint=\"/\", instance=\"_IP3_:9100\", job=\"node-exporter\"}\n) * 100",
-          "format": "time_series",
-          "intervalFactor": 2,
-          "legendFormat": "_IP3_",
-          "refId": "C"
-        },
-        {
-          "expr": "max by (namespace, pod, device) (\n  (\n    node_filesystem_size_bytes{fstype=~\"ext[234]|btrfs|xfs|zfs\", mountpoint=\"/\", instance=\"_IP4_:9100\", job=\"node-exporter\"} -\n    node_filesystem_avail_bytes{fstype=~\"ext[234]|btrfs|xfs|zfs\", mountpoint=\"/\", instance=\"_IP4_:9100\", job=\"node-exporter\"}\n  ) / node_filesystem_size_bytes{fstype=~\"ext[234]|btrfs|xfs|zfs\", mountpoint=\"/\", instance=\"_IP4_:9100\", job=\"node-exporter\"}\n) * 100",
-          "format": "time_series",
-          "intervalFactor": 2,
-          "legendFormat": "_IP4_",
-          "refId": "D"
-        },
-        {
-          "expr": "max by (namespace, pod, device) (\n  (\n    node_filesystem_size_bytes{fstype=~\"ext[234]|btrfs|xfs|zfs\", mountpoint=\"/\", instance=\"_IP5_:9100\", job=\"node-exporter\"} -\n    node_filesystem_avail_bytes{fstype=~\"ext[234]|btrfs|xfs|zfs\", mountpoint=\"/\", instance=\"_IP5_:9100\", job=\"node-exporter\"}\n  ) / node_filesystem_size_bytes{fstype=~\"ext[234]|btrfs|xfs|zfs\", mountpoint=\"/\", instance=\"_IP5_:9100\", job=\"node-exporter\"}\n) * 100",
-          "format": "time_series",
-          "intervalFactor": 2,
-          "legendFormat": "_IP5_",
-          "refId": "E"
-        },
-        {
-          "expr": "max by (namespace, pod, device) (\n  (\n    node_filesystem_size_bytes{fstype=~\"ext[234]|btrfs|xfs|zfs\", mountpoint=\"/\", instance=\"_IP6_:9100\", job=\"node-exporter\"} -\n    node_filesystem_avail_bytes{fstype=~\"ext[234]|btrfs|xfs|zfs\", mountpoint=\"/\", instance=\"_IP6_:9100\", job=\"node-exporter\"}\n  ) / node_filesystem_size_bytes{fstype=~\"ext[234]|btrfs|xfs|zfs\", mountpoint=\"/\", instance=\"_IP6_:9100\", job=\"node-exporter\"}\n) * 100",
-          "format": "time_series",
-          "intervalFactor": 2,
-          "legendFormat": "_IP6_",
-          "refId": "F"
         }
       ],
       "thresholds": [
@@ -900,7 +459,7 @@
       }
     }
   ],
-  "refresh": "",
+  "refresh": false,
   "schemaVersion": 19,
   "style": "dark",
   "tags": [],
@@ -908,7 +467,7 @@
     "list": []
   },
   "time": {
-    "from": "now-1h",
+    "from": "now-15m",
     "to": "now"
   },
   "timepicker": {
@@ -937,7 +496,7 @@
     ]
   },
   "timezone": "",
-  "title": "Kubernetes / Nodes - Alerts Template",
+  "title": "Kubernetes / Nodes - Alerts",
   "uid": "",
   "version": 1
 }
