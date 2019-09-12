@@ -19,7 +19,7 @@ KUBE_TOKEN=`cat /var/run/secrets/kubernetes.io/serviceaccount/token`
 NAMESPACE=`cat /var/run/secrets/kubernetes.io/serviceaccount/namespace`
 APICMD="curl -sSk -H \"Authorization: Bearer $KUBE_TOKEN\" https://$KUBERNETES_SERVICE_HOST:$KUBERNETES_PORT_443_TCP_PORT"
 
-KUBE_VERSION=v1.13
+KUBE_VERSION=v1.14
 REDIS_NAMESPACE=redis
 HPA_NAME=redis
 REDIS_NAME=redisfailover

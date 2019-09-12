@@ -2,7 +2,7 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: vs-prom-grafana
+  name: prom-grafana
   namespace: istio-system
 spec:
   hosts:
@@ -22,7 +22,7 @@ spec:
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: vs-alertmanager
+  name: alertmanager
   namespace: istio-system
 spec:
   hosts:
@@ -42,7 +42,7 @@ spec:
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: vs-prometheus
+  name: prometheus
   namespace: istio-system
 spec:
   hosts:

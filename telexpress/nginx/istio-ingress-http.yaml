@@ -16,4 +16,4 @@ spec:
     - destination:
         port:
           number: 80
-        host: frontend.default.svc.cluster.local
+        host: frontend.istio-test.svc.cluster.local
