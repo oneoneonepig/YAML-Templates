@@ -2,6 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: frontend-conf
+  namespace: istio-test
 data:
   default.conf: |
     server {
@@ -26,6 +27,7 @@ kind: Service
 apiVersion: v1
 metadata:
   name: frontend
+  namespace: istio-test
 spec:
   selector:
     app: frontend
@@ -41,6 +43,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: frontend
+  namespace: istio-test
   labels:
     app: frontend
     version: v1
