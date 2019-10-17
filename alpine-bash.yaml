@@ -16,3 +16,7 @@ spec:
       containers:
       - name: alpine-bash
         image: oneoneonepig/alpine-bash
+        args:
+        - /bin/bash
+        - -c
+        - sleep 30d
