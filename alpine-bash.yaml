@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: alpine-bash
+  labels:
+    app: alpine-bash
+spec:
+  selector:
+    matchLabels:
+      app: alpine-bash
+  template:
+    metadata:
+      labels:
+        app: alpine-bash
+    spec:
+      containers:
+      - name: alpine-bash
+        image: oneoneonepig/alpine-bash
